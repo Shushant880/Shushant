@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #fcd4d0;
+        }
+
+        #heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5em;
+            color: #ff4057;
+            opacity: 0;
+        }
+
+        #messages {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 1.5em;
+            color: #4a4a4a;
+            display: none;
+        }
+
+        #flowers {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        .flower {
+            width: 50px;
+            height: 50px;
+            background-color: #ff66b2;
+            border-radius: 50%;
+            position: absolute;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="heart">❤️</div>
+    <div id="messages">
+        <p>You make my heart skip a beat ❤️</p>
+        <p>Our love is like a blooming flower 🌸</p>
+        <p>You are the sunshine in my life ☀️</p>
+    </div>
+    <div id="flowers"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var heart = document.getElementById('heart');
+            var messages = document.getElementById('messages');
+            var flowers = document.getElementById('flowers');
+
+            setTimeout(function() {
+                heart.style.opacity = '1';
+            }, 1000);
+
+            setTimeout(function() {
+                heart.style.opacity = '0';
+                messages.style.display = 'block';
+            }, 5000);
+
+            setTimeout(function() {
+                messages.style.display = 'none';
+                flowers.style.display = 'block';
+                createFlowers();
+            }, 10000);
+
+            function createFlowers() {
+                for (var i = 0; i < 10; i++) {
+                    var flower = document.createElement('div');
+                    flower.className = 'flower';
+                    flower.style.top = Math.random() * window.innerHeight + 'px';
+                    flower.style.left = Math.random() * window.innerWidth + 'px';
+                    flowers.appendChild(flower);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
